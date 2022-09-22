@@ -20,5 +20,37 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-medium-*.tar
+cashia-*.tar
 
+# If NPM crashes, it generates a log, let's ignore it too.
+npm-debug.log
+
+# The directory NPM downloads your dependencies sources to.
+/assets/node_modules/
+
+# Since we are building assets from assets/,
+# we ignore priv/static. You may want to comment
+# this depending on your deployment strategy.
+/priv/static/
+
+/config/*.secret.exs
+
+.elixir_ls/*
+/lib/play.ex
+
+/priv/plts/*
+
+/backend.schema.json
+/graphql.schema.json
+
+/gcp.json
+
+/priv/certs
+
+/cover
+
+/.vscode/
+
+/.idea
+
+.DS_Store
