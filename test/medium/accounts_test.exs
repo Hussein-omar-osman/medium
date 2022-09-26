@@ -15,21 +15,20 @@ defmodule Medium.AccountsTest do
       assert Accounts.list_users() == [user]
     end
 
-    test "get_user!/1 returns the user with given id" do
+    test "get_user/1 returns the user with given id" do
       user = user_fixture()
-      assert Accounts.get_user!(user.id) == user
+      assert Accounts.get_user(user.id) == user
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{bio: "some bio", email: "some email", image: "some image", name: "some name", password: "some password", username: "some username"}
+      valid_attrs = %{bio: "some bio", email: unique_user_email(), image: "some image", name: "some name", password: "some password", username: unique_user_username()}
 
       assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
       assert user.bio == "some bio"
-      assert user.email == "some email"
+      assert user.email == valid_attrs.email
       assert user.image == "some image"
       assert user.name == "some name"
-      assert user.password == "some password"
-      assert user.username == "some username"
+      assert user.username == valid_attrs.username
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -38,27 +37,26 @@ defmodule Medium.AccountsTest do
 
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
-      update_attrs = %{bio: "some updated bio", email: "some updated email", image: "some updated image", name: "some updated name", password: "some updated password", username: "some updated username"}
+      update_attrs = %{bio: "some updated bio", email: unique_user_email(), image: "some updated image", name: "some updated name", username: unique_user_username()}
 
       assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
       assert user.bio == "some updated bio"
-      assert user.email == "some updated email"
+      assert user.email == update_attrs.email
       assert user.image == "some updated image"
       assert user.name == "some updated name"
-      assert user.password == "some updated password"
-      assert user.username == "some updated username"
+      assert user.username == update_attrs.username
     end
 
     test "update_user/2 with invalid data returns error changeset" do
       user = user_fixture()
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert user == Accounts.get_user!(user.id)
+      assert user == Accounts.get_user(user.id)
     end
 
     test "delete_user/1 deletes the user" do
       user = user_fixture()
       assert {:ok, %User{}} = Accounts.delete_user(user)
-      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user(user.id) end
     end
 
     test "change_user/1 returns a user changeset" do
