@@ -40,6 +40,11 @@ config :medium, Medium.Guardian,
   issuer: "medium",
   secret_key: "qxMKMXnSH6KZMwWEnoFSgIgymtLK5ECttKEObaF6tH10iMm9288pxq5NUTZBGC8c"
 
+config :guardian, Guardian.DB,
+  repo: Medium.Repo,
+  schema_name: "guardian_tokens",
+  sweep_interval: 60 # default: 60 minutes
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
