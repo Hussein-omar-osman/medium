@@ -47,6 +47,7 @@ defmodule Medium.MixProject do
       {:absinthe, "~> 1.6.4"},
       {:absinthe_plug, "~> 1.5.8"},
       {:guardian, "~> 2.0"},
+      {:guardian_db, "~> 2.0"},
       {:cors_plug, "~> 3.0"},
 
     ]
