@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :medium, Medium.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "mwas6190",
   hostname: "localhost",
   database: "medium_dev",
   stacktrace: true,
