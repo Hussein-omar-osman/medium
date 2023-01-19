@@ -5,8 +5,9 @@ defmodule MediumWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", MediumWeb do
+  scope "/api" do
     pipe_through :api
+    forward "/graphql", Absinthe.Plug.GraphiQL, schema: MediumWeb.Schema, interface: :playground
   end
 
   # Enables the Swoosh mailbox preview in development.
