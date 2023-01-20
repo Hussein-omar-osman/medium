@@ -22,5 +22,12 @@ defmodule Medium.Accounts.User do
     |> validate_required([:username, :email, :password, :image])
     |> unique_constraint(:email)
     |> unique_constraint(:username)
+    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/,
+      message: "email must have @ sign and no spaces"
+    )
+    |> validate_length(:email, min: 3, max: 100)
+    |> validate_length(:username, min: 3, max: 100)
+    |> validate_length(:password, min: 3, max: 30)
+    |> update_change(:email, &String.downcase(&1))
   end
 end
