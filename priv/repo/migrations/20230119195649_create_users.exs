@@ -7,7 +7,7 @@ defmodule Medium.Repo.Migrations.CreateUsers do
       add :username, :string, null: false
       add :email, :string, null: false
       add :password, :string, null: false
-      add :image, :string,
+      add :image, :string
       add :name, :string
       add :bio, :text
 
