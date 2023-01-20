@@ -29,5 +29,13 @@ defmodule Medium.Accounts.User do
     |> validate_length(:username, min: 3, max: 100)
     |> validate_length(:password, min: 3, max: 30)
     |> update_change(:email, &String.downcase(&1))
+    |> update_change(:username, &String.downcase(&1))
+    |> hash_password()
   end
+
+  defp hash_password(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, %{password: Bcrypt.hash_pwd_salt(password)})
+  end
+
+  defp hash_password(changeset), do: changeset
 end
