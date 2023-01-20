@@ -1,5 +1,6 @@
 defmodule MediumWeb.Schema do
   use Absinthe.Schema
+  alias MediumWeb.Schema.Resolvers
 
   import_types(MediumWeb.Schema.Types)
 
@@ -12,8 +13,9 @@ defmodule MediumWeb.Schema do
 
   mutation do
     @desc "register new user"
-    field :create_user, :user_type do
+    field :register_user, :user_type do
       arg(:input, non_null(:register_input_type))
+      resolve(&Resolvers.UserResolver.register_user/3)
     end
   end
 end
