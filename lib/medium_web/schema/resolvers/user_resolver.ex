@@ -10,4 +10,8 @@ defmodule MediumWeb.Schema.Resolvers.UserResolver do
      end
   end
 
+  def get_users(_, _, _) do
+    {:ok, Accounts.list_users()}
+  end
+
 end

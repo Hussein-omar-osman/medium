@@ -9,6 +9,11 @@ defmodule MediumWeb.Schema do
     field :hello, :string do
       resolve(fn _, _, _ -> {:ok, "Hello world"} end)
     end
+
+    @desc "get all users"
+    field :get_users, list_of(:user_type) do
+      resolve(&Resolvers.UserResolver.get_users/3)
+    end
   end
 
   mutation do
