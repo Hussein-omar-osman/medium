@@ -35,6 +35,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Guadian configuration details
+config :medium, Medium.Guardian,
+  issuer: "medium",
+  secret_key: "qxMKMXnSH6KZMwWEnoFSgIgymtLK5ECttKEObaF6tH10iMm9288pxq5NUTZBGC8c"
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
