@@ -46,6 +46,7 @@ defmodule Medium.MixProject do
       {:bcrypt_elixir, "~> 3.0"},
       {:absinthe, "~> 1.6.4"},
       {:absinthe_plug, "~> 1.5.8"},
+      {:guardian, "~> 2.0"}
     ]
   end
 
