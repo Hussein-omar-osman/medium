@@ -37,6 +37,48 @@ defmodule Medium.Accounts do
   """
   def get_user(id), do: Repo.get(User, id)
 
+   @doc """
+  Gets a single user depending on the email passed.
+
+  Returns nil if the User does not exist.
+
+  ## Examples
+
+      iex> get_user_by_email("test@example.com")
+      %User{}
+
+      iex> get_user_by_email("notest@example.com")
+      nil
+
+  """
+
+  def get_user_by_email(email) do
+    User
+      |> where(email: ^email)
+      |> Repo.one()
+  end
+
+   @doc """
+  Gets a single account depending on the email passed.
+
+  Returns nil if the Account does not exist.
+
+  ## Examples
+
+      iex> get_user_by_username("existing-username")
+      %User{}
+
+      iex> get_user_by_username("nonexisting-username")
+      nil
+
+  """
+
+  def get_user_by_username(username) do
+    User
+      |> where(username: ^username)
+      |> Repo.one()
+  end
+
   @doc """
   Creates a user.
 
