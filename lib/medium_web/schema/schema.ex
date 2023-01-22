@@ -26,7 +26,13 @@ defmodule MediumWeb.Schema do
     @desc "login user with email"
     field :login_with_email, :session_type do
       arg(:input, non_null(:session_input_email_type))
-      resolve(&Resolvers.SessionResolver.login_user/3)
+      resolve(&Resolvers.SessionResolver.login_user_email/3)
+    end
+
+    @desc "login user with username"
+    field :login_with_username, :session_type do
+      arg(:input, non_null(:session_input_username_type))
+      resolve(&Resolvers.SessionResolver.login_user_username/3)
     end
   end
 end
