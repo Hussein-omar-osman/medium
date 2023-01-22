@@ -4,7 +4,7 @@ defmodule MediumWeb.Schema.Resolvers.SessionResolver do
 
   def login_user(_, %{input: input}, _) do
 
-    with {:ok, user} <- Auth.authenticate(input),
+    with {:ok, user} <- Auth.authenticate_with_email(input),
          {:ok, token, _} <- Guardian.encode_and_sign(user) do
           {:ok, %{token: token, user: user}}
 

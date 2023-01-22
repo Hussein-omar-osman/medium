@@ -6,7 +6,12 @@ defmodule MediumWeb.Schema.Types.SessionType do
     field(:user, :user_type)
   end
 
-  input_object :session_input_type do
+  input_object :session_input_email_type do
+    field(:email, non_null(:string))
+    field(:password, non_null(:string))
+  end
+
+  input_object :session_input_username_type do
     field(:email, non_null(:string))
     field(:password, non_null(:string))
   end
