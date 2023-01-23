@@ -1,6 +1,7 @@
 defmodule MediumWeb.Schema do
   use Absinthe.Schema
   alias MediumWeb.Resolvers
+  alias MediumWeb.Middleware
 
   import_types(MediumWeb.Schema.Types)
 
@@ -12,6 +13,7 @@ defmodule MediumWeb.Schema do
 
     @desc "get all users"
     field :get_users, list_of(:user_type) do
+      middleware(Middleware.Authorize)
       resolve(&Resolvers.UserResolver.get_users/3)
     end
   end
