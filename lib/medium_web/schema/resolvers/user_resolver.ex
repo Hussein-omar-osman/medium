@@ -10,7 +10,10 @@ defmodule MediumWeb.Schema.Resolvers.UserResolver do
      end
   end
 
-  def get_users(_, _, _) do
+  def get_users(_, _, %{context: context}) do
+    IO.puts("------------------------------")
+    IO.inspect(context)
+    IO.puts("------------------------------")
     {:ok, Accounts.list_users()}
   end
 
