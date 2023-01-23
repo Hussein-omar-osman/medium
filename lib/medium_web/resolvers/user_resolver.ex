@@ -1,4 +1,4 @@
-defmodule MediumWeb.Schema.Resolvers.UserResolver do
+defmodule MediumWeb.Resolvers.UserResolver do
   alias Medium.Accounts
   alias Medium.Accounts.User
   alias MediumWeb.Utils

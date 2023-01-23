@@ -1,4 +1,4 @@
-defmodule MediumWeb.Schema.Resolvers.SessionResolver do
+defmodule MediumWeb.Resolvers.SessionResolver do
 
   alias Medium.{Auth, Guardian}
 

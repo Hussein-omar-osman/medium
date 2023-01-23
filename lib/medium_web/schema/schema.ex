@@ -1,6 +1,6 @@
 defmodule MediumWeb.Schema do
   use Absinthe.Schema
-  alias MediumWeb.Schema.Resolvers
+  alias MediumWeb.Resolvers
 
   import_types(MediumWeb.Schema.Types)
 
