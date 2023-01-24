@@ -3,6 +3,7 @@ defmodule MediumWeb.Schema do
   alias MediumWeb.Resolvers
   alias MediumWeb.Middleware
 
+
   import_types(MediumWeb.Schema.Types)
 
   query do
@@ -35,6 +36,13 @@ defmodule MediumWeb.Schema do
     field :login_with_username, :session_type do
       arg(:input, non_null(:session_input_username_type))
       resolve(&Resolvers.SessionResolver.login_user_username/3)
+    end
+
+    @desc "create post"
+    field :create_post, :post_type do
+      arg(:input, non_null(:post_input_type))
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.PostResolver.create_post/3)
     end
   end
 end
