@@ -14,4 +14,13 @@ defmodule MediumWeb.Resolvers.PostResolver do
 
   end
 
+  def my_posts(_, _, %{context: %{current_user: current_user}}) do
+    {:ok, Posts.list_posts(current_user.id)}
+  end
+
+
+  def user_posts(_, %{input: %{id: id}}, _) do
+    {:ok, Posts.list_posts(id)}
+  end
+
 end
