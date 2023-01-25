@@ -17,8 +17,8 @@ defmodule Medium.Posts do
       [%Post{}, ...]
 
   """
-  def list_posts do
-    Repo.all(Post)
+  def list_posts(id) do
+    Repo.all(from(p in Post, where: p.user_id == ^id, preload: [:user]))
   end
 
   @doc """
