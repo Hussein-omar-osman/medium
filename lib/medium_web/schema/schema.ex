@@ -17,6 +17,19 @@ defmodule MediumWeb.Schema do
       middleware(Middleware.Authorize)
       resolve(&Resolvers.UserResolver.get_users/3)
     end
+
+    @desc "get all my posts"
+    field :my_posts, list_of(:post_type) do
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.PostResolver.my_posts/3)
+    end
+
+    @desc "get all user posts"
+    field :user_posts, list_of(:post_type) do
+      arg(:input, non_null(:id_input_type))
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.PostResolver.user_posts/3)
+    end
   end
 
   mutation do
