@@ -65,6 +65,13 @@ defmodule MediumWeb.Schema do
       resolve(&Resolvers.PostResolver.update_post/3)
     end
 
+    @desc "delete post"
+    field :delete_post, :boolean do
+      arg(:input, non_null(:id_input_type))
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.PostResolver.delete_post/3)
+    end
+
   end
 
 end
