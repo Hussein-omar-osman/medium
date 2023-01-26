@@ -15,4 +15,11 @@ defmodule MediumWeb.Schema.Types.PostType do
     field :content, non_null(:string)
     field :thumbnail, :string
   end
+
+  input_object :update_post_input_type do
+    field :id, non_null(:id)
+    field :title, :string
+    field :content, :string
+    field :thumbnail, :string
+  end
 end
