@@ -36,6 +36,20 @@ defmodule MediumWeb.Resolvers.PostResolver do
     end
   end
 
+
+  def delete_post(_, %{input: input}, %{context: %{current_user: current_user}}) do
+    with  {:ok, post}  <- Posts.get_post(input.id),
+          {:ok, _} <- verfy_user(current_user.id, post.user_id),
+          {:ok, %Post{}} <- Posts.delete_post(post) do
+
+          {:ok, true}
+       else
+        {:error, :not_found} -> {:error, "Post not found"}
+        {:error, :not_allowed} -> {:error, "You are not allowed to delete this post"}
+        {:error, %Ecto.Changeset{} = changeset} -> {:error, Utils.format_changeset_error(changeset)}
+    end
+  end
+
   defp verfy_user(current_user_id, owner_user_id) do
     case Accounts.get_user(current_user_id)  do
       n when n.id == owner_user_id  -> {:ok, n}
