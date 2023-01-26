@@ -10,7 +10,7 @@ defmodule Medium.Posts.Post do
     field :thumbnail, :string
     field :title, :string
     # field :user_id, :binary_id
-    belongs_to :user, User
+    belongs_to :user, User, type: :binary_id
 
     timestamps()
   end

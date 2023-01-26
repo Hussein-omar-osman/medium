@@ -29,13 +29,22 @@ defmodule Medium.Posts do
   ## Examples
 
       iex> get_post!(123)
-      %Post{}
+      ** {:ok, result}
 
       iex> get_post!(456)
-      ** (Ecto.NoResultsError)
+      ** {:error, :not_found}
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post(id) do
+    try do
+      result =
+        Repo.get!(Post, id)
+      {:ok, result}
+    rescue
+      Ecto.NoResultsError ->
+        {:error, :not_found}
+    end
+  end
 
   @doc """
   Creates a post.
@@ -69,6 +78,7 @@ defmodule Medium.Posts do
   """
   def update_post(%Post{} = post, attrs) do
     post
+    |> Repo.preload(:user)
     |> Post.changeset(attrs)
     |> Repo.update()
   end
