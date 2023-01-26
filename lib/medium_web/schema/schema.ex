@@ -57,5 +57,14 @@ defmodule MediumWeb.Schema do
       middleware(Middleware.Authorize)
       resolve(&Resolvers.PostResolver.create_post/3)
     end
+
+    @desc "update post"
+    field :update_post, :post_type do
+      arg(:input, non_null(:update_post_input_type))
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.PostResolver.update_post/3)
+    end
+
   end
+
 end
