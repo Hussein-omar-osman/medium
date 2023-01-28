@@ -2,6 +2,7 @@ defmodule Medium.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Medium.Posts.Post
+  alias Medium.Comments.Comment
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -14,6 +15,7 @@ defmodule Medium.Accounts.User do
     field :username, :string
 
     has_many :posts, Post
+    has_many :comments, Comment
 
     timestamps()
   end
