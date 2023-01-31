@@ -17,8 +17,9 @@ defmodule Medium.Comments do
       [%Comment{}, ...]
 
   """
-  def list_comments do
-    Repo.all(Comment)
+  def list_comments(post_id) do
+    # Repo.all(Comment)
+    Repo.all(from(c in Comment, where: c.post_id == ^post_id, preload: [:user]))
   end
 
   @doc """

@@ -73,7 +73,7 @@ defmodule MediumWeb.Schema do
     end
 
     @desc "create comment"
-    field :create_post, :comment_type do
+    field :create_comment, :comment_type do
       arg(:input, non_null(:comment_input_type))
       middleware(Middleware.Authorize)
       resolve(&Resolvers.CommentResolver.create_comment/3)

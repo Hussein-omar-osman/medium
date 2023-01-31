@@ -12,6 +12,5 @@ defmodule MediumWeb.Resolvers.CommentResolver do
       {:error, %Ecto.Changeset{} = changeset} -> {:error, Utils.format_changeset_error(changeset)}
      end
 
-
   end
 end

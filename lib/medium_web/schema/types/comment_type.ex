@@ -5,7 +5,7 @@ defmodule MediumWeb.Schema.Types.CommentType do
     field :id, :id
     field :content, :string
     field :post_id, :id
-    field :user, :user_type
+    field :user_id, :id
   end
 
   input_object :comment_input_type do

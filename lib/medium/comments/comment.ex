@@ -20,6 +20,6 @@ defmodule Medium.Comments.Comment do
     comment
     |> cast(attrs, [:content, :user_id, :post_id])
     |> validate_required([:content, :user_id, :post_id])
-    |> validate_length(:title, min: 1)
+    |> validate_length(:content, min: 1)
   end
 end
