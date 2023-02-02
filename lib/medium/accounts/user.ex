@@ -3,6 +3,7 @@ defmodule Medium.Accounts.User do
   import Ecto.Changeset
   alias Medium.Posts.Post
   alias Medium.Comments.Comment
+  alias Medium.Bookmarks.Bookmark
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -16,6 +17,7 @@ defmodule Medium.Accounts.User do
 
     has_many :posts, Post
     has_many :comments, Comment
+    has_many :bookmarks, Bookmark
 
     timestamps()
   end
