@@ -5,16 +5,16 @@ defmodule Medium.BookmarksFixtures do
   """
 
   @doc """
-  Generate a bookkmark.
+  Generate a bookmark.
   """
-  def bookkmark_fixture(attrs \\ %{}) do
-    {:ok, bookkmark} =
+  def bookmark_fixture(attrs \\ %{}) do
+    {:ok, bookmark} =
       attrs
       |> Enum.into(%{
 
       })
-      |> Medium.Bookmarks.create_bookkmark()
+      |> Medium.Bookmarks.create_bookmark()
 
-    bookkmark
+    bookmark
   end
 end

@@ -1,4 +1,4 @@
-defmodule Medium.Bookmarks.Bookkmark do
+defmodule Medium.Bookmarks.Bookmark do
   use Ecto.Schema
   import Ecto.Changeset
   alias Medium.Accounts.User
@@ -15,8 +15,8 @@ defmodule Medium.Bookmarks.Bookkmark do
   end
 
   @doc false
-  def changeset(bookkmark, attrs) do
-    bookkmark
+  def changeset(bookmark, attrs) do
+    bookmark
     |> cast(attrs, [:user_id, :post_id])
     |> validate_required([:user_id, :post_id])
     |> unique_constraint([:user_id, :post_id])
