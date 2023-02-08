@@ -13,4 +13,9 @@ defmodule MediumWeb.Schema.Types.CommentType do
     field :content, non_null(:string)
   end
 
+  input_object :update_comment_input_type do
+    field :id, non_null(:id)
+    field :content, :string
+  end
+
 end

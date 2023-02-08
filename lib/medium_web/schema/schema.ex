@@ -79,6 +79,13 @@ defmodule MediumWeb.Schema do
       resolve(&Resolvers.CommentResolver.create_comment/3)
     end
 
+    @desc "update comment"
+    field :update_comment, :comment_type do
+      arg(:input, non_null(:update_comment_input_type))
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.CommentResolver.update_comment/3)
+    end
+
   end
 
 end
