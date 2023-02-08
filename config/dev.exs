@@ -2,7 +2,7 @@ import Config
 
 # Configure your database
 config :medium, Medium.Repo,
-  username: "postgres",
+  username: "hussein",
   password: "mwas6190",
   hostname: "localhost",
   database: "medium_dev",
