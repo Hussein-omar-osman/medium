@@ -29,14 +29,23 @@ defmodule Medium.Comments do
 
   ## Examples
 
-      iex> get_comment!(123)
-      %Comment{}
+      iex> get_comment(123)
+      {:ok, result}
 
-      iex> get_comment!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_comment(456)
+      ** {:error, :not_found}
 
   """
-  def get_comment!(id), do: Repo.get!(Comment, id)
+   def get_comment(id) do
+    try do
+      result =
+        Repo.get!(Post, id)
+      {:ok, result}
+    rescue
+      Ecto.NoResultsError ->
+        {:error, :not_found}
+    end
+  end
 
   @doc """
   Creates a comment.
