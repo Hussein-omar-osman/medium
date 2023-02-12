@@ -16,7 +16,7 @@ defmodule MediumWeb.Plugs.Context do
          {:ok, claims}  <- Guardian.decode_and_verify(token),
          {:ok,  user} <- Guardian.resource_from_claims(claims) do
 
-          %{current_user: user}
+          %{current_user: user, token: token}
 
       else
         _ -> %{}

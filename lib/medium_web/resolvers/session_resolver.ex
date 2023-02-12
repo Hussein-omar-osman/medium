@@ -19,4 +19,9 @@ defmodule MediumWeb.Resolvers.SessionResolver do
 
     end
   end
+
+  def sign_out(_, _, %{context: context}) do
+    Guardian.revoke(context.token)
+    {:ok, true}
+  end
 end

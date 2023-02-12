@@ -18,6 +18,12 @@ defmodule MediumWeb.Schema do
       resolve(&Resolvers.UserResolver.get_users/3)
     end
 
+    @desc "sign out user"
+    field :sign_out, :boolean do
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.SessionResolver.sign_out/3)
+    end
+
     @desc "get all my posts"
     field :my_posts, list_of(:post_type) do
       middleware(Middleware.Authorize)
