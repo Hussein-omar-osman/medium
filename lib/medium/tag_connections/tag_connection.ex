@@ -1,13 +1,15 @@
 defmodule Medium.TagConnections.TagConnection do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Medium.Tags.Tag
+  alias Medium.Posts.Post
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "tagconnections" do
 
-    field :tag_id, :binary_id
-    field :post_id, :binary_id
+    belongs_to :tag, Tag, type: :binary_id
+    belongs_to :post, Post, type: :binary_id
 
     timestamps()
   end

@@ -3,6 +3,7 @@ defmodule Medium.Posts.Post do
   import Ecto.Changeset
   alias Medium.Accounts.User
   alias Medium.Comments.Comment
+  alias Medium.TagConnections.TagConnection
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -12,6 +13,7 @@ defmodule Medium.Posts.Post do
     field :title, :string
     belongs_to :user, User, type: :binary_id
     has_many :comments, Comment
+    has_many :tagconnection, TagConnection
 
     timestamps()
   end
