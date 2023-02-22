@@ -1,13 +1,15 @@
 defmodule Medium.Likes.Like do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Medium.Accounts.User
+  alias Medium.Posts.Post
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "likes" do
 
-    field :post_id, :binary_id
-    field :user_id, :binary_id
+    belongs_to :user, User, type: :binary_id
+    belongs_to :post, Post, type: :binary_id
 
     timestamps()
   end
