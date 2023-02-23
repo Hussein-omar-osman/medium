@@ -21,6 +21,10 @@ defmodule Medium.Posts do
     Repo.all(from(p in Post, where: p.user_id == ^id, preload: [:user]))
   end
 
+  def list_posts_without_id do
+    Repo.all(Post) |> Repo.preload([:user])
+  end
+
   @doc """
   Gets a single post.
 

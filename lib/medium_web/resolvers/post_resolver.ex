@@ -18,6 +18,10 @@ defmodule MediumWeb.Resolvers.PostResolver do
     {:ok, Posts.list_posts(current_user.id)}
   end
 
+  def all_posts(_, _, _) do
+    {:ok, Posts.list_posts_without_id()}
+  end
+
 
   def user_posts(_, %{input: %{id: id}}, _) do
     {:ok, Posts.list_posts(id)}
