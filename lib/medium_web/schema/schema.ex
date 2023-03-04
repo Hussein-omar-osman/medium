@@ -42,6 +42,12 @@ defmodule MediumWeb.Schema do
       middleware(Middleware.Authorize)
       resolve(&Resolvers.PostResolver.user_posts/3)
     end
+
+    @desc "get all user bookmarks"
+    field :bookmarks, list_of(:post_type) do
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.BookmarkResolver.bookmarks/3)
+    end
   end
 
   mutation do
@@ -96,6 +102,13 @@ defmodule MediumWeb.Schema do
       arg(:input, non_null(:update_comment_input_type))
       middleware(Middleware.Authorize)
       resolve(&Resolvers.CommentResolver.update_comment/3)
+    end
+
+    @desc "alter single bookmark"
+    field :alter_bookmark, :boolean do
+      arg(:input, non_null(:id_input_type))
+      middleware(Middleware.Authorize)
+      resolve(&Resolvers.BookmarkResolver.alter_bookmark/3)
     end
 
   end
