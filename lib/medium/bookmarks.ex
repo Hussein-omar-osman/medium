@@ -13,12 +13,12 @@ defmodule Medium.Bookmarks do
 
   ## Examples
 
-      iex> list_bookmarks()
+      iex> list_bookmarks(id)
       [%Bookmark{}, ...]
 
   """
-  def list_bookmarks do
-    Repo.all(Bookmark)
+  def list_bookmarks(id) do
+    Repo.all(from(b in Bookmark, where: b.user_id == ^id, preload: [:user]))
   end
 
   @doc """
@@ -36,6 +36,23 @@ defmodule Medium.Bookmarks do
 
   """
   def get_bookmark!(id), do: Repo.get!(Bookmark, id)
+
+
+  @doc """
+  Check if bookmark exists.
+
+  ## Examples
+
+      iex> check_bookmark_exists(1, 3)
+      %Bookmark{}
+
+      iex> check_bookmark_exists(2, 4)
+      nil
+
+  """
+  def check_bookmark_exists(post_id, user_id) do
+    Repo.one(from(b in Bookmark, where: b.user_id == ^user_id and b.post_id == ^post_id))
+  end
 
   @doc """
   Creates a bookmark.
