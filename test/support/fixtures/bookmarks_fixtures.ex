@@ -8,10 +8,13 @@ defmodule Medium.BookmarksFixtures do
   Generate a bookmark.
   """
   def bookmark_fixture(attrs \\ %{}) do
+    user = Medium.AccountsFixtures.user_fixture()
+    post = Medium.PostsFixtures.post_fixture()
     {:ok, bookmark} =
       attrs
       |> Enum.into(%{
-
+        user_id: user.id,
+        post_id: post.id,
       })
       |> Medium.Bookmarks.create_bookmark()
 
