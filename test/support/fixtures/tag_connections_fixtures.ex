@@ -8,10 +8,13 @@ defmodule Medium.TagConnectionsFixtures do
   Generate a tag_connection.
   """
   def tag_connection_fixture(attrs \\ %{}) do
+    tag = Medium.TagsFixtures.tag_fixture()
+    post = Medium.PostsFixtures.post_fixture()
     {:ok, tag_connection} =
       attrs
       |> Enum.into(%{
-
+        tag_id: tag.id,
+        post_id: post.id,
       })
       |> Medium.TagConnections.create_tag_connection()
 
