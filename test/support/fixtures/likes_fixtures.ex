@@ -8,10 +8,13 @@ defmodule Medium.LikesFixtures do
   Generate a like.
   """
   def like_fixture(attrs \\ %{}) do
+    user = Medium.AccountsFixtures.user_fixture()
+    post = Medium.PostsFixtures.post_fixture()
     {:ok, like} =
       attrs
       |> Enum.into(%{
-
+        user_id: user.id,
+        post_id: post.id,
       })
       |> Medium.Likes.create_like()
 

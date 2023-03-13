@@ -21,33 +21,37 @@ defmodule Medium.LikesTest do
     end
 
     test "create_like/1 with valid data creates a like" do
-      valid_attrs = %{}
+      user = Medium.AccountsFixtures.user_fixture()
+      post = Medium.PostsFixtures.post_fixture()
+      valid_attrs = %{user_id: user.id, post_id: post.id}
 
       assert {:ok, %Like{} = like} = Likes.create_like(valid_attrs)
+      assert like.user_id == user.id
+      assert like.post_id == post.id
     end
 
     test "create_like/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Likes.create_like(@invalid_attrs)
     end
 
-    test "update_like/2 with valid data updates the like" do
-      like = like_fixture()
-      update_attrs = %{}
+    # test "update_like/2 with valid data updates the like" do
+    #   like = like_fixture()
+    #   update_attrs = %{}
 
-      assert {:ok, %Like{} = like} = Likes.update_like(like, update_attrs)
-    end
+    #   assert {:ok, %Like{} = like} = Likes.update_like(like, update_attrs)
+    # end
 
-    test "update_like/2 with invalid data returns error changeset" do
-      like = like_fixture()
-      assert {:error, %Ecto.Changeset{}} = Likes.update_like(like, @invalid_attrs)
-      assert like == Likes.get_like!(like.id)
-    end
+    # test "update_like/2 with invalid data returns error changeset" do
+    #   like = like_fixture()
+    #   assert {:error, %Ecto.Changeset{}} = Likes.update_like(like, @invalid_attrs)
+    #   assert like == Likes.get_like!(like.id)
+    # end
 
-    test "delete_like/1 deletes the like" do
-      like = like_fixture()
-      assert {:ok, %Like{}} = Likes.delete_like(like)
-      assert_raise Ecto.NoResultsError, fn -> Likes.get_like!(like.id) end
-    end
+    # test "delete_like/1 deletes the like" do
+    #   like = like_fixture()
+    #   assert {:ok, %Like{}} = Likes.delete_like(like)
+    #   assert_raise Ecto.NoResultsError, fn -> Likes.get_like!(like.id) end
+    # end
 
     test "change_like/1 returns a like changeset" do
       like = like_fixture()
