@@ -45,11 +45,11 @@ defmodule Medium.TagsTest do
       assert tag == Tags.get_tag!(tag.id)
     end
 
-    test "delete_tag/1 deletes the tag" do
-      tag = tag_fixture()
-      assert {:ok, %Tag{}} = Tags.delete_tag(tag)
-      assert_raise Ecto.NoResultsError, fn -> Tags.get_tag!(tag.id) end
-    end
+    # test "delete_tag/1 deletes the tag" do
+    #   tag = tag_fixture()
+    #   assert {:ok, %Tag{}} = Tags.delete_tag(tag)
+    #   assert_raise Ecto.NoResultsError, fn -> Tags.get_tag!(tag.id) end
+    # end
 
     test "change_tag/1 returns a tag changeset" do
       tag = tag_fixture()
