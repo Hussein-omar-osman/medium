@@ -39,7 +39,7 @@ defmodule Medium.Comments do
    def get_comment(id) do
     try do
       result =
-        Repo.get!(Post, id)
+        Repo.get(Comment, id)
       {:ok, result}
     rescue
       Ecto.NoResultsError ->
